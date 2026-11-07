@@ -59,7 +59,7 @@ export default function Hero() {
       </div>
 
       {/* Versi HP: sapaan + nama di antara kata besar dan kepala foto */}
-      <div className="hero-anim absolute inset-x-0 top-[calc(11svh+8.5rem)] z-20 md:hidden text-center pointer-events-none px-4" style={{ '--d': '1000ms' } as React.CSSProperties}>
+      <div className="hero-anim absolute inset-x-0 top-[calc(11svh+6rem)] z-20 md:hidden text-center pointer-events-none px-4" style={{ '--d': '1000ms' } as React.CSSProperties}>
         <p className="font-script text-2xl font-bold text-emerald-600 dark:text-emerald-400 leading-none">{t('hero.hey')}</p>
         <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)]">Mikael Tegar</h1>
       </div>
