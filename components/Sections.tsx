@@ -1280,9 +1280,37 @@ export function AwardsSection() {
   )
 }
 
+/** Logo gabungan Microsoft Office (Word, Excel, PowerPoint) untuk kartu software. */
+function OfficeSuiteLogo({ className = 'w-7 h-7' }: { className?: string }) {
+  return (
+    <span className={`${className} grid grid-cols-2 gap-0.5 place-items-center`} aria-hidden="true">
+      <WordLogo className="w-[13px] h-[13px]" />
+      <ExcelLogo className="w-[13px] h-[13px]" />
+      <PowerPointLogo className="w-[13px] h-[13px]" />
+    </span>
+  )
+}
+
 export function PersonalSkillsSection() {
   const { t } = useLanguage()
-  const softSkills = [1, 2, 3, 4, 5, 6].map((n) => t(`personal.soft.${n}.t`))
+
+  const softSkills = [
+    { title: t('personal.soft.1.t'), desc: t('personal.soft.1.d') },
+    { title: t('personal.soft.2.t'), desc: t('personal.soft.2.d') },
+    { title: t('personal.soft.3.t'), desc: t('personal.soft.3.d') },
+    { title: t('personal.soft.4.t'), desc: t('personal.soft.4.d') },
+    { title: t('personal.soft.5.t'), desc: t('personal.soft.5.d') },
+    { title: t('personal.soft.6.t'), desc: t('personal.soft.6.d') },
+  ]
+
+  const softwareSkills = [
+    { name: 'Microsoft Office', Icon: OfficeSuiteLogo, description: t('personal.sw.office') },
+    { name: 'Microsoft Excel', Icon: ExcelLogo, description: t('personal.sw.excel') },
+    { name: 'Microsoft PowerPoint', Icon: PowerPointLogo, description: t('personal.sw.ppt') },
+    { name: 'Canva', Icon: CanvaLogo, description: t('personal.sw.canva') },
+    { name: 'Google Docs & Spreadsheet', Icon: GoogleOfficeLogo, description: t('personal.sw.google') },
+  ]
+  const toolGroups = [1, 2].map((n) => ({ label: t(`personal.tools.${n}.label`), tags: t(`personal.tools.${n}.tags`).split('|') }))
   const languages = [1].map((n) => ({ name: t(`lang.${n}.t`), level: t(`lang.${n}.d`) }))
 
   return (
@@ -1302,43 +1330,98 @@ export function PersonalSkillsSection() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
             <TypewriterTitle text={t('personal.title')} />
           </h2>
-          <p className="text-[var(--muted)] text-sm md:text-base max-w-xl">{t('personal.sub')}</p>
+          <p className="text-[var(--muted)] text-sm md:text-base max-w-xl">
+            {t('personal.sub')}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          <div className="lg:col-span-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 md:p-10 shadow-sm flex flex-col justify-between">
+          {/* Left Column: Soft Skills */}
+          <div className="lg:col-span-6 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 md:p-10 shadow-sm flex flex-col justify-between">
             <div>
               <div className="mb-8 pb-4 border-b border-[var(--card-border)]">
-                <span className="text-[10px] font-sans tracking-widest uppercase text-emerald-500 font-semibold block mb-1">{t('personal.soft.label')}</span>
-                <h3 className="text-2xl font-bold">{t('personal.soft.title')}</h3>
+                <div>
+                  <span className="text-[10px] font-sans tracking-widest uppercase text-emerald-500 font-semibold block mb-1">
+                    {t('personal.soft.label')}
+                  </span>
+                  <h3 className="text-2xl font-bold">{t('personal.soft.title')}</h3>
+                </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {softSkills.map((title, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--card-border)] hover:border-emerald-500/50 transition-colors flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-                    <h4 className="font-bold text-sm text-[var(--foreground)]">{title}</h4>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {softSkills.map((skill, idx) => (
+                  <div key={idx} className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[var(--muted)] transition-colors">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                      <h4 className="font-bold text-sm text-[var(--foreground)]">{skill.title}</h4>
+                    </div>
+                    <p className="text-xs text-[var(--muted)] leading-relaxed">{skill.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="mt-8 pt-6 border-t border-[var(--card-border)] flex items-center justify-between text-xs text-[var(--muted)] gap-4">
-              <span>{t('personal.orientation')}</span>
-              <span className="font-sans text-emerald-500 font-semibold text-right">{t('personal.quality')}</span>
-            </div>
-          </div>
 
-          <div className="lg:col-span-4 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 md:p-10 shadow-sm">
-            <div className="mb-8 pb-4 border-b border-[var(--card-border)]">
-              <span className="text-[10px] font-sans tracking-widest uppercase text-emerald-500 font-semibold block mb-1">{t('lang.label')}</span>
-              <h3 className="text-2xl font-bold">{t('lang.title')}</h3>
-            </div>
-            <div className="space-y-4">
+            <div className="mt-6 flex flex-col gap-3">
+              <span className="text-[10px] font-sans tracking-widest uppercase text-emerald-500 font-semibold">{t('lang.label')}</span>
               {languages.map((l) => (
                 <div key={l.name} className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--card-border)] flex items-center justify-between gap-3">
                   <span className="font-bold text-sm">{l.name}</span>
                   <span className="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">{l.level}</span>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-[var(--card-border)] flex items-center justify-between text-xs text-[var(--muted)]">
+              <span>{t('personal.orientation')}</span>
+              <span className="font-sans text-emerald-500 font-semibold">{t('personal.quality')}</span>
+            </div>
+          </div>
+
+          {/* Right Column: Software & Tools */}
+          <div className="lg:col-span-6 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-8 md:p-10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="mb-8 pb-4 border-b border-[var(--card-border)]">
+                <div>
+                  <span className="text-[10px] font-sans tracking-widest uppercase text-emerald-500 font-semibold block mb-1">
+                    {t('personal.hard.label')}
+                  </span>
+                  <h3 className="text-2xl font-bold">{t('personal.hard.title')}</h3>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {softwareSkills.map((sw, idx) => (
+                  <div key={idx} className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--card-border)] hover:border-[var(--muted)] transition-colors flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm p-2">
+                      <sw.Icon className="w-7 h-7 shrink-0" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="mb-1">
+                        <h4 className="font-bold text-sm md:text-base text-[var(--foreground)]">{sw.name}</h4>
+                      </div>
+                      <p className="text-xs text-[var(--muted)] leading-relaxed">{sw.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 space-y-4">
+              {toolGroups.map((g) => (
+                <div key={g.label}>
+                  <span className="text-[10px] font-sans tracking-widest uppercase text-emerald-500 font-semibold block mb-2">{g.label}</span>
+                  <div className="flex flex-wrap gap-2">
+                    {g.tags.map((tag) => (
+                      <span key={tag} className="px-3 py-1.5 rounded-lg bg-[var(--background)] border border-[var(--card-border)] text-[10px] font-medium text-[var(--muted)]">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-[var(--card-border)] flex items-center justify-between text-xs text-[var(--muted)]">
+              <span>{t('personal.app')}</span>
+              <span className="font-sans text-emerald-500 font-semibold">{t('personal.ready')}</span>
             </div>
           </div>
         </div>
