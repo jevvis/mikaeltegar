@@ -7,14 +7,12 @@ import { useLanguage } from '@/contexts/LanguageContext'
 const imgs = (key: string, n: number) => Array.from({ length: n }, (_, i) => `/projects/proj-${key}-${i + 1}.jpg`)
 
 // Susunan seperti Template 1 (ProjectShowcase): kartu bergaya masonry. Foto dari folder klien (screenshot dan dokumentasi).
-// Proyek 2 (Media Monitoring) belum punya foto.
 const works: { id: number; images: string[] }[] = [
   { id: 1, images: imgs('sosro', 1) },
-  { id: 2, images: [] },
-  { id: 3, images: imgs('wuling', 3) },
-  { id: 4, images: imgs('agency', 3) },
-  { id: 5, images: imgs('umkm', 2) },
-  { id: 6, images: imgs('kalaswara', 3) },
+  { id: 2, images: imgs('wuling', 3) },
+  { id: 3, images: imgs('agency', 3) },
+  { id: 4, images: imgs('umkm', 2) },
+  { id: 5, images: imgs('kalaswara', 3) },
 ]
 
 function ProjectCard({ id, images }: { id: number; images: string[] }) {

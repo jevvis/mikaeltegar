@@ -899,7 +899,7 @@ export function AboutSection() {
           <div className="group p-5 sm:p-6 rounded-3xl bg-[var(--card-bg)]/40 hover:bg-[var(--card-bg)] border border-[var(--card-border)]/50 hover:border-emerald-500/40 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer">
             <div>
               <div className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[var(--foreground)] mb-2 font-sans group-hover:text-emerald-500 transition-colors duration-300">
-                <AnimatedCounter end={6} decimals={0} suffix="" duration={1500} />
+                <AnimatedCounter end={5} decimals={0} suffix="" duration={1500} />
               </div>
               <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-[var(--muted)] group-hover:text-[var(--foreground)] transition-colors block">
                 {t('metric.medal')}
