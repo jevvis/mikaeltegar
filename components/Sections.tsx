@@ -743,7 +743,7 @@ export function AboutSection() {
             
             {/* Header: Photo + Name + Stats */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-10">
-              <div aria-label="Mikael Tegar Aryanta Putra" className="w-24 h-24 rounded-full border-[3px] border-[var(--card-border)] bg-gradient-to-br from-emerald-400 to-teal-600 shrink-0 shadow-lg flex items-center justify-center text-white text-3xl font-bold tracking-tight font-oswald">MT</div>
+              <img src="/profile.png" alt="Mikael Tegar Aryanta Putra" className="w-24 h-24 rounded-full object-cover object-top border-[3px] border-[var(--card-border)] bg-[var(--card-bg)] shrink-0 shadow-lg" />
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <h3 className="text-xl md:text-2xl font-bold tracking-wide">MIKAEL TEGAR ARYANTA PUTRA</h3>
@@ -1152,7 +1152,7 @@ export function AwardsSection() {
     { id: 1, image: '/projects/cert-dm-1.jpg' },
     { id: 2, image: '/projects/cert-eprt-1.jpg' },
     { id: 3, image: '/projects/cert-perfection-1.jpg' },
-    { id: 5, image: '/projects/cert-star-1.jpg', file: '/Sertifikat_TelU_Career_Coach_Mikael_Tegar.pdf' },
+    { id: 4, image: '/projects/cert-star-1.jpg', file: '/Sertifikat_TelU_Career_Coach_Mikael_Tegar.pdf' },
   ].map((c: { id: number; image: string; file?: string }) => ({
     ...c,
     title: t(`award.${c.id}.title`),
@@ -1161,8 +1161,6 @@ export function AwardsSection() {
     category: t(`award.${c.id}.cat`),
     description: t(`award.${c.id}.desc`),
   }))
-  // sertifikat yang berkasnya belum dikirim: tampil sebagai kartu teks
-  const otherItems = [4]
 
   const getCardStyle = (offset: number) => {
     if (offset === 0) return { transform: 'translate(-50%, -50%) scale(1)', zIndex: 30, opacity: 1, filter: 'brightness(1)', cursor: 'default' }
@@ -1259,21 +1257,6 @@ export function AwardsSection() {
           >
             {t('awards.viewOriginal')}
           </a>
-        </div>
-
-        {/* Pelatihan lain (berkas belum dikirim) */}
-        <p className="text-[10px] tracking-[0.3em] uppercase text-emerald-500 mt-16 mb-6 font-semibold">{t('awards.other.label')}</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {otherItems.map((n) => (
-            <div key={n} className="p-5 rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-emerald-500/50 transition-colors flex flex-col">
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <span className="text-[10px] tracking-widest uppercase text-emerald-500 font-semibold">{t(`award.${n}.cat`)}</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full border bg-[var(--background)] border-[var(--card-border)] text-[var(--muted)] font-semibold">{t(`award.${n}.year`)}</span>
-              </div>
-              <h4 className="font-bold text-sm leading-snug mb-1.5">{t(`award.${n}.title`)}</h4>
-              <p className="text-xs font-semibold text-[var(--muted)]">{t(`award.${n}.issuer`)}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

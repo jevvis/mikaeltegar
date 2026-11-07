@@ -5,7 +5,7 @@ import TypewriterTitle from './TypewriterTitle'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 // Susunan seperti Template 1 (TrainingsSection): kolase di kiri, kartu organisasi di kanan.
-// Foto dari klien: The Perfection (4), OMK (2, satu duplikat dibuang), Digital Nation Ambassador (3). Tile HIMA berupa teks.
+// Foto dari klien: The Perfection (4), OMK (2, satu duplikat dibuang), Digital Nation Ambassador (3).
 const perfectionPhotos = [1, 2, 3, 4].map((n) => `/projects/org-perfection-${n}.jpg`)
 const omkPhotos = [1, 2].map((n) => `/projects/org-omk-${n}.jpg`)
 const dnaPhotos = [1, 2, 3].map((n) => `/projects/org-dna-${n}.jpg`)
@@ -39,7 +39,6 @@ export default function AcademicOrg() {
     </div>
   )
   const tile = 'w-full rounded-2xl overflow-hidden border transition-all duration-500 cursor-pointer relative'
-  const textTile = 'flex flex-col items-center justify-center text-center p-3 bg-gradient-to-br from-emerald-500/25 via-[var(--card-bg)] to-[var(--card-bg)]'
 
   return (
     <section id="trainings" className="relative py-24 px-4 md:px-8 overflow-x-clip font-sans">
@@ -83,10 +82,9 @@ export default function AcademicOrg() {
                 <img src={dnaPhotos[dnaIdx]} alt={t('org.3.inst')} className={`${img} ${imageClass([3])}`} />
                 {badge(dnaIdx, dnaPhotos.length, 'DNA')}
               </div>
-              <div {...hover(1)} className={`${tile} aspect-[4/5] ${textTile} ${wrapperClass([1, 3])}`}>
-                <span className="font-oswald text-4xl font-bold text-emerald-500 leading-none">HIMA</span>
-                <span className="font-oswald text-2xl font-bold text-[var(--foreground)] leading-none mt-1">DIGITAL PR</span>
-                <span className="mt-3 text-[10px] tracking-widest uppercase text-[var(--muted)] font-semibold">Telkom University</span>
+              <div {...hover(3)} onClick={() => setDnaIdx((p) => (p + 1) % dnaPhotos.length)} className={`${tile} aspect-[4/5] ${wrapperClass([3])}`} title={t('ui.orgClick')}>
+                <img src={dnaPhotos[(dnaIdx + 1) % dnaPhotos.length]} alt={t('org.3.inst')} className={`${img} ${imageClass([3])}`} />
+                {badge((dnaIdx + 1) % dnaPhotos.length, dnaPhotos.length, 'DNA')}
               </div>
             </div>
           </div>
