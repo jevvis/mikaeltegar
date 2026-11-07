@@ -32,3 +32,4 @@ Situs portofolio dwibahasa (ID/EN) dari Template 1 (Next.js 14), kode dasar ORDE
 - Foto kegiatan: The Perfection (4), OMK (2; satu berkas duplikat identik dibuang), Digital Nation Ambassador (3). Tile HIMA Digital PR tetap teks.
 - Mikael Tegar.pdf = sertifikat TEL-U Career Coach (STAR) Intrapreneurship (No. 35/KMH01/KMH/2025); masuk cover-flow dengan tombol ke PDF asli. Sertifikat Keanggotaan HIMA masih tanpa berkas (kartu teks).
 - MIKAEL TEGAR_CV BARU_PUBLIC RELATIONS.pdf identik dengan CV yang sudah dipakai (hash sama).
+- Folder s1 (3 foto wisuda S1) dipasang di kartu Telkom University; SMA Santa Maria 3 dihapus dari Pendidikan atas permintaan.
