@@ -5,12 +5,18 @@ import TypewriterTitle from './TypewriterTitle'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 // Susunan seperti Template 1 (TrainingsSection): kolase di kiri, kartu organisasi di kanan.
-// Klien hanya mengirim satu gambar organisasi (sertifikat peserta The Perfection); kotak lain berupa tile inisial, bukan foto.
+// Foto dari klien: The Perfection (4), OMK (2, satu duplikat dibuang), Digital Nation Ambassador (3). Tile HIMA berupa teks.
+const perfectionPhotos = [1, 2, 3, 4].map((n) => `/projects/org-perfection-${n}.jpg`)
+const omkPhotos = [1, 2].map((n) => `/projects/org-omk-${n}.jpg`)
+const dnaPhotos = [1, 2, 3].map((n) => `/projects/org-dna-${n}.jpg`)
 const orgIds = [1, 2, 3]
 
 export default function AcademicOrg() {
   const { t } = useLanguage()
   const [hoveredOrgId, setHoveredOrgId] = useState<number | null>(null)
+  const [perfIdx, setPerfIdx] = useState(0)
+  const [omkIdx, setOmkIdx] = useState(0)
+  const [dnaIdx, setDnaIdx] = useState(0)
 
   const wrapperClass = (ids: number[]) => {
     const isMatch = hoveredOrgId !== null && ids.includes(hoveredOrgId)
@@ -20,6 +26,18 @@ export default function AcademicOrg() {
     return 'opacity-90 scale-100 hover:opacity-100 hover:scale-105 border-[var(--card-border)] shadow-md'
   }
   const hover = (id: number) => ({ onMouseEnter: () => setHoveredOrgId(id), onMouseLeave: () => setHoveredOrgId(null) })
+  const imageClass = (ids: number[]) => {
+    const isMatch = hoveredOrgId !== null && ids.includes(hoveredOrgId)
+    return isMatch ? 'grayscale-0 brightness-105 contrast-105 scale-105' : 'grayscale hover:grayscale-0'
+  }
+  const img = 'w-full h-full object-cover transition-all duration-500'
+  const badge = (idx: number, total: number, label: string) => (
+    <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-white text-[9px] font-medium flex items-center gap-1 shadow-md pointer-events-none">
+      <span>{idx + 1}/{total}</span>
+      <span className="opacity-60">•</span>
+      <span>{label}</span>
+    </div>
+  )
   const tile = 'w-full rounded-2xl overflow-hidden border transition-all duration-500 cursor-pointer relative'
   const textTile = 'flex flex-col items-center justify-center text-center p-3 bg-gradient-to-br from-emerald-500/25 via-[var(--card-bg)] to-[var(--card-bg)]'
 
@@ -51,18 +69,19 @@ export default function AcademicOrg() {
           {/* Kiri: kolase, tersambung ke kartu organisasi */}
           <div className="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4 pr-0 lg:pr-4 lg:sticky lg:top-24 select-none">
             <div className="flex flex-col gap-3 sm:gap-4 -translate-y-4">
-              <div {...hover(1)} className={`${tile} aspect-[4/5] bg-white ${wrapperClass([1])}`} title={t('org.1.inst')}>
-                <img src="/projects/org-perfection-1.jpg" alt={t('org.1.inst')} className="w-full h-full object-contain" />
+              <div {...hover(1)} onClick={() => setPerfIdx((p) => (p + 1) % perfectionPhotos.length)} className={`${tile} aspect-[4/5] ${wrapperClass([1])}`} title={t('ui.orgClick')}>
+                <img src={perfectionPhotos[perfIdx]} alt={t('org.1.inst')} className={`${img} ${imageClass([1])}`} />
+                {badge(perfIdx, perfectionPhotos.length, 'The Perfection')}
               </div>
-              <div {...hover(2)} className={`${tile} aspect-square ${textTile} ${wrapperClass([2])}`}>
-                <span className="font-oswald text-5xl font-bold text-emerald-500 leading-none">OMK</span>
-                <span className="mt-2 text-[10px] tracking-widest uppercase text-[var(--muted)] font-semibold">{t('org.2.role')}</span>
+              <div {...hover(2)} onClick={() => setOmkIdx((p) => (p + 1) % omkPhotos.length)} className={`${tile} aspect-square ${wrapperClass([2])}`} title={t('ui.orgClick')}>
+                <img src={omkPhotos[omkIdx]} alt={t('org.2.inst')} className={`${img} ${imageClass([2])}`} />
+                {badge(omkIdx, omkPhotos.length, 'OMK')}
               </div>
             </div>
             <div className="flex flex-col gap-3 sm:gap-4 translate-y-3">
-              <div {...hover(3)} className={`${tile} aspect-square ${textTile} ${wrapperClass([3])}`}>
-                <span className="font-oswald text-4xl font-bold text-emerald-500 leading-none">DNA</span>
-                <span className="mt-2 text-[10px] tracking-widest uppercase text-[var(--muted)] font-semibold">{t('org.3.role')}</span>
+              <div {...hover(3)} onClick={() => setDnaIdx((p) => (p + 1) % dnaPhotos.length)} className={`${tile} aspect-square ${wrapperClass([3])}`} title={t('ui.orgClick')}>
+                <img src={dnaPhotos[dnaIdx]} alt={t('org.3.inst')} className={`${img} ${imageClass([3])}`} />
+                {badge(dnaIdx, dnaPhotos.length, 'DNA')}
               </div>
               <div {...hover(1)} className={`${tile} aspect-[4/5] ${textTile} ${wrapperClass([1, 3])}`}>
                 <span className="font-oswald text-4xl font-bold text-emerald-500 leading-none">HIMA</span>

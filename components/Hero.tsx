@@ -157,16 +157,18 @@ export default function Hero() {
               transition: isHovered ? 'transform 0.12s ease-out' : 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)',
             }}
           >
-            {/* Klien belum mengirim foto diri: ditampilkan monogram. Ganti dengan foto cutout (/profile.png) bila sudah ada. */}
-            <div className="w-full flex justify-center">
-              <div
-                aria-label="Mikael Tegar Aryanta Putra"
-                className="w-[min(72vw,60vh)] aspect-square mb-6 md:mb-10 rounded-full bg-gradient-to-br from-emerald-400 via-emerald-500 to-teal-600 flex items-center justify-center shadow-2xl"
-                style={{ filter: isHovered ? 'drop-shadow(0 20px 45px rgba(16, 185, 129, 0.3))' : 'drop-shadow(0 12px 30px rgba(0, 0, 0, 0.12))' }}
-              >
-                <span className="font-oswald font-bold text-white leading-none tracking-tight text-[clamp(90px,24vw,300px)] select-none">MT</span>
-              </div>
-            </div>
+            <img
+              src="/profile.png"
+              alt="Mikael Tegar Aryanta Putra"
+              className={`w-full h-auto max-h-[62svh] md:max-h-[82vh] object-contain transition-all duration-500 ${
+                isHovered ? 'brightness-105 contrast-105' : 'brightness-100'
+              }`}
+              style={{
+                filter: isHovered
+                  ? 'drop-shadow(0 20px 45px rgba(16, 185, 129, 0.3)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.35))'
+                  : 'drop-shadow(0 12px 30px rgba(0, 0, 0, 0.08))',
+              }}
+            />
           </div>
 
           {/* Interactive name pill at bottom */}

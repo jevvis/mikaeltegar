@@ -1174,7 +1174,8 @@ export function AwardsSection() {
     { id: 1, image: '/projects/cert-dm-1.jpg' },
     { id: 2, image: '/projects/cert-eprt-1.jpg' },
     { id: 3, image: '/projects/cert-perfection-1.jpg' },
-  ].map((c) => ({
+    { id: 5, image: '/projects/cert-star-1.jpg', file: '/Sertifikat_TelU_Career_Coach_Mikael_Tegar.pdf' },
+  ].map((c: { id: number; image: string; file?: string }) => ({
     ...c,
     title: t(`award.${c.id}.title`),
     issuer: t(`award.${c.id}.issuer`),
@@ -1183,7 +1184,7 @@ export function AwardsSection() {
     description: t(`award.${c.id}.desc`),
   }))
   // sertifikat yang berkasnya belum dikirim: tampil sebagai kartu teks
-  const otherItems = [4, 5]
+  const otherItems = [4]
 
   const getCardStyle = (offset: number) => {
     if (offset === 0) return { transform: 'translate(-50%, -50%) scale(1)', zIndex: 30, opacity: 1, filter: 'brightness(1)', cursor: 'default' }
@@ -1217,7 +1218,7 @@ export function AwardsSection() {
             <p className="text-[var(--muted)] text-sm max-w-md font-sans">{t('awards.sub')}</p>
           </div>
           <a
-            href={active.image}
+            href={active.file ?? active.image}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--foreground)] text-[var(--background)] text-sm font-medium hover:opacity-90 transition-colors shrink-0"
@@ -1273,7 +1274,7 @@ export function AwardsSection() {
           </p>
           <p className="text-[var(--muted)] text-sm md:text-base leading-relaxed mb-4 max-w-2xl mx-auto font-sans">{active.description}</p>
           <a
-            href={active.image}
+            href={active.file ?? active.image}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-semibold underline underline-offset-4 hover:opacity-75 transition-opacity font-sans text-[var(--foreground)]"

@@ -26,3 +26,9 @@ Situs portofolio dwibahasa (ID/EN) dari Template 1 (Next.js 14), kode dasar ORDE
 11. Banyak foto proyek berupa tangkapan layar beresolusi rendah (sekitar 370 px). Tangkapan layar YouTube pada proyek Agensi Kreatif memuat nama kanal orang lain.
 12. Foto kelompok memuat wajah rekan kerja dan teman kuliah; dipakai apa adanya.
 13. Salah ketik di CV diperbaiki: "menyususn", "berantusias", "berkeja sama", "Portofoliio", "didunia".
+
+## Tambahan dari klien (2026-11-07, drive-download-20261107T055522Z-1-001)
+- FOTO NON FORMAL.jpg dipakai sebagai foto profil hero (cutout rembg), menggantikan monogram MT.
+- Foto kegiatan: The Perfection (4), OMK (2; satu berkas duplikat identik dibuang), Digital Nation Ambassador (3). Tile HIMA Digital PR tetap teks.
+- Mikael Tegar.pdf = sertifikat TEL-U Career Coach (STAR) Intrapreneurship (No. 35/KMH01/KMH/2025); masuk cover-flow dengan tombol ke PDF asli. Sertifikat Keanggotaan HIMA masih tanpa berkas (kartu teks).
+- MIKAEL TEGAR_CV BARU_PUBLIC RELATIONS.pdf identik dengan CV yang sudah dipakai (hash sama).
